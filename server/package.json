@@ -1,0 +1,34 @@
+{
+  "name": "spotify-downloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@googleapis/docs": "^0.2.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "google-auth-library": "^7.0.4",
+    "googleapis": "^71.0.0",
+    "node-fetch": "^2.6.1",
+    "open": "^8.0.5",
+    "prompt-sync": "^4.2.0",
+    "request": "^2.88.2",
+    "server-destroy": "^1.0.1",
+    "spotify-web-api-node": "^5.0.2",
+    "youtube-api": "^3.0.1",
+    "youtube-dl-exec": "^1.2.1",
+    "ytdl-core": "^4.5.0",
+    "ytsr": "^3.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
