@@ -71,6 +71,22 @@ class App extends Component {
 
  downloadTrack = (name,artist) => {
   fetch(`http://localhost:3001/downloadTrack/${name}/${artist}`)
+  .then((res) => 
+    res.blob()
+  )
+  .then((blob) => {
+    console.log(blob);
+    const url = window.URL.createObjectURL(new Blob([blob]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `${name}.mp4`);
+    // 3. Append to html page
+    document.body.appendChild(link);
+    // 4. Force download
+    link.click();
+    // 5. Clean up and remove the link
+    link.parentNode.removeChild(link);
+  })
   .catch(error => console.log(error));
  }
 
@@ -92,7 +108,24 @@ class App extends Component {
  downloadUrl = (event) => {
    event.preventDefault();
    const url = encodeURIComponent(this.state.url);
-  fetch(`http://localhost:3001/downloadUrl/${url}`).catch(error => console.log(error));
+  fetch(`http://localhost:3001/downloadUrl/${url}`)
+  .then((res) => 
+    res.blob()
+  )
+  .then((blob) => {
+    console.log(blob);
+    const url = window.URL.createObjectURL(new Blob([blob]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `song.mp4`);
+    // 3. Append to html page
+    document.body.appendChild(link);
+    // 4. Force download
+    link.click();
+    // 5. Clean up and remove the link
+    link.parentNode.removeChild(link);
+  })
+  .catch(error => console.log(error));
  }
  render() {
    const { isUserAuthorized, playlists, tracks, youtubePlaylists, playlistTracks,showPlaylist, showPlaylistPic } = this.state;
@@ -108,7 +141,7 @@ class App extends Component {
          </div>
          <div className="main">
           <Tabs>
-              <div label="Playlists" >{playlists.length !== 0 ? <Table label="Playlists" action={this.getPlaylistTracks} items={playlists} /> : null}</div>
+              <div label="Playlists" >{playlists.length !== 0 ? <Table label="Playlists" action={this.getPlaylistTracks} items={playlists} /> : null} {playlistTracks.length !== 0 ? <Tracks playlistTracks={playlistTracks} action={this.downloadTrack} name={showPlaylist} pic={showPlaylistPic}/> : null}</div>
               <div label="Tracks">{tracks.length !== 0 ? <Tracks label="Tracks" action={this.downloadTrack} playlistTracks={tracks} name="All saved tracks" pic="sad" /> : null}</div>
               <div label="Url">
               <form onSubmit={this.downloadUrl}>
@@ -121,7 +154,7 @@ class App extends Component {
               </div>
           </Tabs>
 
-          {playlistTracks.length !== 0 ? <Tracks playlistTracks={playlistTracks} name={showPlaylist} pic={showPlaylistPic}/> : null}
+          
          </div>
           
       

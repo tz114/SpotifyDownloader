@@ -40,7 +40,9 @@ const scopes = [
  * Create a new OAuth2 client with the configured keys.
  */
 const oauth2Client = new google.auth.OAuth2(
-  
+  "633877957587-f2s9rl0jvc5ec4siam319uj39cmqdqnk.apps.googleusercontent.com",
+  "8KVCI8u2LUMnGnwjS54TTf_6",
+  "http://localhost:3001/youtubecallback"
 );
 
 /**
@@ -94,11 +96,12 @@ const downloadUrl = async (req,res) => {
   ytdl.downloadFromInfo(info, {
     quality: 'highestaudio'
   })
-  ytdl(url,{
+  const dl = ytdl(url,{
     quality: 'highestaudio',
     filter: 'audioonly',
   })
   .pipe(fs.createWriteStream('video.mp4'));
+  dl.on('finish', function () {res.download("./video.mp4")})
 }
 
 const createPlaylist = async (name) => {
@@ -134,11 +137,12 @@ const downloadTrack = async(req,res) => {
   const artist = req.params.artist;
   const query = track + " " + artist; 
   const url = await search(query);
-  ytdl(url,{
+  const dl = ytdl(url,{
     quality: 'highestaudio',
     filter: 'audioonly',
   })
   .pipe(fs.createWriteStream(track+".mp4"));
+  dl.on('finish', function () {res.download("./"+track+".mp4")})
 
 }
 
