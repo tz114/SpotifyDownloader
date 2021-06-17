@@ -3,9 +3,6 @@ var SpotifyWebApi = require('spotify-web-api-node');
 scopes = ['user-library-read','user-read-private', 'user-read-email','playlist-modify-public','playlist-modify-private','user-read-email', 'playlist-read-private']
 
 var spotifyApi = new SpotifyWebApi({
-  clientId: '0c9849136f5a42d980967d96ff8c62c1',
-  clientSecret: 'c25acf36515e466698bf8afc43456536',
-  redirectUri: 'http://localhost:3001/callback',
 })
 
 
@@ -88,6 +85,7 @@ const getTracks = async (req, res) =>{
     })
     offset += limit;
   }
+  console.log(tracks);
   res.json(arr);
 }
 

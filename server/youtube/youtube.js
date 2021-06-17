@@ -40,9 +40,6 @@ const scopes = [
  * Create a new OAuth2 client with the configured keys.
  */
 const oauth2Client = new google.auth.OAuth2(
-  "633877957587-f2s9rl0jvc5ec4siam319uj39cmqdqnk.apps.googleusercontent.com",
-  "8KVCI8u2LUMnGnwjS54TTf_6",
-  "http://localhost:3001/youtubecallback"
 );
 
 /**

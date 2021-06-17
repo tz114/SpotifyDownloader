@@ -28,7 +28,7 @@ class App extends Component {
   const { isUserAuthorized } = this.state;
 
   if (isUserAuthorized) {
-    fetch('http://localhost:3001/playlist')
+    fetch('/playlist')
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -38,7 +38,7 @@ class App extends Component {
       .catch(error => console.log(error));
       
     
-    fetch('http://localhost:3001/tracks')
+    fetch('/tracks')
     .then(res => res.json())
       .then(data => {
         this.setState({
@@ -47,7 +47,7 @@ class App extends Component {
       })
       .catch(error => console.log(error));
     
-    fetch('http://localhost:3001/youtubeplaylist')
+    fetch('/youtubeplaylist')
     .then(res => res.json())
     .then(data => {
       this.setState({
@@ -91,7 +91,7 @@ class App extends Component {
  }
 
  getPlaylistTracks = (playlistId,playlistName, playlistPic) => {
-  fetch(`http://localhost:3001/getPlaylistTracks/${playlistId}`)
+  fetch(`/getPlaylistTracks/${playlistId}`)
   .then(res => res.json())
   .then(data => {
     this.setState({
@@ -108,7 +108,7 @@ class App extends Component {
  downloadUrl = (event) => {
    event.preventDefault();
    const url = encodeURIComponent(this.state.url);
-  fetch(`http://localhost:3001/downloadUrl/${url}`)
+  fetch(`/downloadUrl/${url}`)
   .then((res) => 
     res.blob()
   )

@@ -5,10 +5,10 @@ var cors = require('cors');
 var cookieParser = require('cookie-parser');
 const port = 3001
 
+
 app.use(express.static(__dirname + '/views'))
   .use(cors())
   .use(cookieParser());
-
 require('./spotify/spotifyRoutes')(app);
 require('./youtube/youtubeRoutes')(app);
 
